@@ -18,7 +18,7 @@ public class PhoneBookSpec {
     public void testLookUp(){
         PhoneBook phoneBook=new PhoneBook();
         phoneBook.add("Zihao", "3021239000");
-        String expectedValue="3021239000";
+        String expectedValue="3021239000\t";
         Assert.assertEquals(expectedValue, phoneBook.lookUp("zihao"));
     }
 
@@ -26,7 +26,17 @@ public class PhoneBookSpec {
     public void testRemove(){
         PhoneBook phoneBook=new PhoneBook();
         phoneBook.add("Zihao", "3021239000");
-        phoneBook.remove("zihao");
+        phoneBook.add("Zihao", "3025679000");
+        phoneBook.remove("zihao", "3021239000");
+        int expectedValue=1;
+        Assert.assertEquals(expectedValue, phoneBook.getSize());
+    }
+
+    @Test
+    public void testRemoveRecord(){
+        PhoneBook phoneBook=new PhoneBook();
+        phoneBook.add("Zihao", "3021239000");
+        phoneBook.removeRecord("zihao");
         int expectedValue=0;
         Assert.assertEquals(expectedValue, phoneBook.getSize());
     }
@@ -44,11 +54,12 @@ public class PhoneBookSpec {
     @Test
     public void testListEntries(){
         PhoneBook phoneBook=new PhoneBook();
-        phoneBook.add("Zihao", "3021239000");
         phoneBook.add("Castine", "3026668888");
+        phoneBook.add("Zihao", "3021239000");
+        phoneBook.add("zihao", "3025558888");
 
-        String expectedValue="Name: castine Number: 3026668888\n" +
-                "Name: zihao Number: 3021239000\n";
+        String expectedValue="Name: castine Number: 3026668888\t\n" +
+                "Name: zihao Number: 3021239000\t3025558888\t\n";
         Assert.assertEquals(expectedValue, phoneBook.listEntries());
     }
 
@@ -59,7 +70,6 @@ public class PhoneBookSpec {
         String expectedValue="zihao";
         Assert.assertEquals(expectedValue, phoneBook.reverseLookup("3021239000"));
     }
-
 
 
 }
