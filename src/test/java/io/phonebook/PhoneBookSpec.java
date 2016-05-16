@@ -52,7 +52,13 @@ public class PhoneBookSpec {
         Assert.assertEquals(expectedValue, phoneBook.listEntries());
     }
 
-    
+    @Test
+    public void testReverseLookUp(){
+        PhoneBook phoneBook=new PhoneBook();
+        phoneBook.add("Zihao", "3021239000");
+        String expectedValue="zihao";
+        Assert.assertEquals(expectedValue, phoneBook.reverseLookup("3021239000"));
+    }
 
 
 

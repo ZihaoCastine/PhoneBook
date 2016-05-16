@@ -30,6 +30,17 @@ public class PhoneBook {
 
     }
 
+    public String reverseLookup(String number){
+        String name="";
+        for (String each : phoneMap.keySet()) {
+           if(phoneMap.get(each).equals(number)){
+               name=each;
+           }
+        }
+        return name;
+
+    }
+
     public String listAllNames(){
         String allName="";
         for (String each : phoneMap.keySet()) {
